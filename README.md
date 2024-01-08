@@ -1,4 +1,4 @@
-**This solution is unfinished.**
+**This solution is finished.**
 
 Implement the methods graph1 and graph2 that both return a Graph.
 

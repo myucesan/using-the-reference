@@ -11,8 +11,25 @@ class UsingWhatYouGet {
 
     /** @return the graph from the image. */
     public static Graph graph1() {
+        List<Node> nodes = new ArrayList<>();
+        Node source = new Node(0);
+        Node target = new Node(4);
+        Node two = new Node(2);
+        Node three = new Node(3);
+        Node one = new Node(1);
+        source.addEdge(two, 5);
+        source.addEdge(three, 3);
+        two.addEdge(target, 2);
+        two.addEdge(one,2);
+        three.addEdge(one, 5);
+        one.addEdge(target, 7);
+        nodes.add(source);
+        nodes.add(target);
+        nodes.add(one);
+        nodes.add(two);
+        nodes.add(three);
 
-        // TODO
+        return new Graph(nodes, source, target);
     }
 
     /**
@@ -23,7 +40,19 @@ class UsingWhatYouGet {
      *     node n is the sink.
      */
     public static Graph graph2(int n, int[][] edges) {
-        // TODO
+        List<Node> nodes = new ArrayList<>();
+
+        for (int i = 1; i <= n; i++) {
+            nodes.add(new Node(i));
+        }
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (edges[i][j] == 0) continue;
+                nodes.get(i - 1).addEdge(nodes.get(j - 1), edges[i][j]);
+            }
+        }
+        // note that List is still 0-indexed so adjust accordingly
+        return new Graph(nodes, nodes.get(0), nodes.get(n - 1));
     }
 }
 
